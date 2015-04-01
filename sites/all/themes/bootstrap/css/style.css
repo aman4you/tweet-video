@@ -127,7 +127,7 @@
 
 /* line 114, ../sass/style.scss */
 .hcl-campaign-tweet-meter-icon {
-  background: url("/sites/all/themes/bootstrap/images/tweet-meter_export.png") no-repeat 50% 50% transparent;
+  background: url("/sites/all/themes/bootstrap/images/tweet-meter_export.png") no-repeat transparent;
   width: 270px;
   height: 232px;
 }
@@ -160,7 +160,7 @@
 
 /* line 143, ../sass/style.scss */
 .tweet-meter-units {
-  background: url("/sites/all/themes/bootstrap/images/meter.png") no-repeat 50% 50% transparent;
+  background: url("/sites/all/themes/bootstrap/images/meter.png") no-repeat transparent;
   position: absolute;
   bottom: 41px;
   left: 271px;
