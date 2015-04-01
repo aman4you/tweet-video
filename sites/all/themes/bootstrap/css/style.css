@@ -1,0 +1,268 @@
+/* line 2, ../sass/style.scss */
+#navbar {
+  max-width: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-color: white;
+  background-color: white;
+}
+
+/* line 11, ../sass/style.scss */
+.navbar-header {
+  padding-left: 910px;
+}
+
+/* line 16, ../sass/style.scss */
+#block-system-main-menu li, #block-system-main-menu li a {
+  display: inline;
+}
+
+/* line 20, ../sass/style.scss */
+#block-system-main-menu li:first-child {
+  padding-left: 560px;
+}
+
+/* line 24, ../sass/style.scss */
+#block-system-main-menu {
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+/* line 29, ../sass/style.scss */
+#block-system-main-menu li.active a {
+  color: #F6821F;
+  text-transform: uppercase;
+}
+
+/* line 35, ../sass/style.scss */
+#block-block-1 {
+  height: 170px;
+  background-color: #F6821F;
+}
+
+/* line 40, ../sass/style.scss */
+.success {
+  color: white;
+  font-size: 31px;
+  padding-left: 500px;
+  padding-top: 34px;
+  text-transform: uppercase;
+}
+
+/* line 48, ../sass/style.scss */
+.shortcut {
+  font-size: 30px;
+  margin-top: -14px;
+  padding-left: 500px;
+  text-transform: uppercase;
+}
+
+/* line 55, ../sass/style.scss */
+.watch-video, .tweet-answer, .isb {
+  display: inline;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* line 61, ../sass/style.scss */
+.watch-video {
+  padding-left: 500px;
+}
+
+/* line 65, ../sass/style.scss */
+.hcl-breadcrumb {
+  font-size: 17px;
+}
+
+/* line 69, ../sass/style.scss */
+.shortcut-to-success {
+  bottom: 86px;
+  left: 280px;
+  position: absolute;
+}
+
+/* line 76, ../sass/style.scss */
+.main-container {
+  width: 100%;
+  padding: 0px;
+}
+
+/* line 81, ../sass/style.scss */
+#block-twitter-tweet-count-hcl-campaign-twitter-video-block {
+  background-color: #00ADEE;
+}
+
+/* line 86, ../sass/style.scss */
+.campaign-video {
+  width: 37.667%;
+  margin-right: 40px;
+}
+
+/* line 91, ../sass/style.scss */
+#hcl-campaign-video-player_logo {
+  display: none;
+}
+
+/* line 95, ../sass/style.scss */
+#hcl-campaign-video-player {
+  height: 277px !important;
+  margin-top: 50px;
+}
+
+/* line 101, ../sass/style.scss */
+.hcl-campaign-tweet-meter-outer {
+  background-color: #F6821F;
+  width: 270px;
+  height: 232px;
+  margin-top: 95px;
+}
+
+/* line 108, ../sass/style.scss */
+.hcl-campaign-tweet-meter-inner {
+  background-color: white;
+  width: 270px;
+  height: 232px;
+}
+
+/* line 114, ../sass/style.scss */
+.hcl-campaign-tweet-meter-icon {
+  background: url("/sites/all/themes/bootstrap/images/tweet-meter_export.png") no-repeat 50% 50% transparent;
+  width: 270px;
+  height: 232px;
+}
+
+/* line 120, ../sass/style.scss */
+.hcl-campaign-tweet-meter-lable {
+  color: white;
+  font-family: "Comic Sans MS";
+  font-size: 14px;
+  left: 70px;
+  position: absolute;
+  top: 75px;
+  width: 98px;
+  text-transform: uppercase;
+}
+
+/* line 131, ../sass/style.scss */
+.tweet-meter-lables .tweet-meter-lable {
+  color: white;
+  font-size: 12px;
+  padding-bottom: 8px;
+}
+
+/* line 137, ../sass/style.scss */
+.tweet-meter-lables {
+  bottom: 36px;
+  left: 245px;
+  position: absolute;
+}
+
+/* line 143, ../sass/style.scss */
+.tweet-meter-units {
+  background: url("/sites/all/themes/bootstrap/images/meter.png") no-repeat 50% 50% transparent;
+  position: absolute;
+  bottom: 41px;
+  left: 271px;
+  height: 200px;
+  width: 36px;
+}
+
+/* line 153, ../sass/style.scss */
+.campaign-quiz-bank {
+  width: 37.667%;
+  margin-right: 40px;
+}
+
+/* line 158, ../sass/style.scss */
+.quiz-header {
+  margin-top: 30px;
+  background-color: #0066B2;
+}
+
+/* line 163, ../sass/style.scss */
+.question-bank {
+  display: inline-block;
+  padding: 15px 58px 14px 57px;
+  font-size: 9px;
+  color: white;
+  text-transform: uppercase;
+  background: url("/sites/all/themes/bootstrap/images/question_mark.png") no-repeat 11% 50%;
+}
+
+/* line 172, ../sass/style.scss */
+.link.all-quiz-question {
+  display: inline-block;
+  font-size: 9px;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* line 179, ../sass/style.scss */
+.quiz-content {
+  background-color: white;
+  padding-bottom: 22px;
+  padding-top: 22px;
+}
+
+/* line 185, ../sass/style.scss */
+.previous {
+  height: 26px;
+  width: 16px;
+  margin-left: 24px;
+  margin-right: 37px;
+  display: inline-block;
+  background: url("/sites/all/themes/bootstrap/images/left-arrow.gif") no-repeat transparent;
+}
+
+/* line 194, ../sass/style.scss */
+.next {
+  height: 26px;
+  width: 16px;
+  margin-left: 38px;
+  display: inline-block;
+  background: url("/sites/all/themes/bootstrap/images/right-arrow.gif") no-repeat transparent;
+}
+
+/* line 202, ../sass/style.scss */
+.quiz-content .quiz-question {
+  color: #0066B2;
+  display: none !important;
+}
+
+/* line 207, ../sass/style.scss */
+.quiz-question.top {
+  display: inline !important;
+}
+
+/* line 211, ../sass/style.scss */
+.campaign-quiz-question {
+  bottom: 7px;
+  position: relative;
+  display: inline-block;
+}
+
+/* line 218, ../sass/style.scss */
+.hcl-campaign-twitter-widget-header {
+  font-weight: bold;
+  font-size: 11px;
+  color: #F6821F;
+  padding-top: 12px;
+  padding-left: 120px;
+  padding-bottom: 12px;
+  text-transform: uppercase;
+  background: #0066B2 url("/sites/all/themes/bootstrap/images/twitter_feed.png") no-repeat 27% 50%;
+}
+
+/* line 229, ../sass/style.scss */
+.hcl-campaign-twitter-widget {
+  margin-bottom: 50px;
+  margin-top: 29px;
+  width: 22%;
+}
+
+/* line 236, ../sass/style.scss */
+.footer.container {
+  margin: 0px;
+  padding: 0px;
+}

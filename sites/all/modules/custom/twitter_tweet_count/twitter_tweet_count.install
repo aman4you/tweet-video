@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install file for the twitter tweet count module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function twitter_tweet_count_uninstall() {
+
+  $twitter_dir = 'public://coperate';
+
+  $files = array();
+  $result = db_query("select * FROM {file_managed} WHERE uri LIKE '$twitter_dir%'");
+  foreach ($result as $row) {
+    $files[] = $row->fid;
+  }
+  if (!empty($files)) {
+    $files = implode(',', $files);
+    $files = '(' . $files . ')';
+    db_query("DELETE FROM {file_managed} WHERE fid in $files");
+    db_query("DELETE FROM {file_usage} WHERE fid in $files");
+  }
+
+  db_query("DELETE FROM {variable} WHERE name LIKE 'hcl_tweets_%'");
+  db_query("DELETE FROM {variable} WHERE name LIKE 'hcl_campaign_%'");
+
+  file_unmanaged_delete_recursive($twitter_dir);
+}

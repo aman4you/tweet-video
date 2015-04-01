@@ -1,0 +1,12 @@
+form .tweets-count-container-wrapper .tweets-count-container > div {
+  display: inline-block;
+  margin: 0px 30px;
+}
+
+form .tweets-count-container-wrapper .form-managed-file a {
+  width: 230px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

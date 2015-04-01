@@ -1,0 +1,320 @@
+<?php
+/**
+ * @file
+ * Twitter tweet count module file.
+ */
+
+define('COPERATE_VIDEO_PATH', 'public://coperate/');
+
+/**
+ * Implements hook_menu().
+ */
+function twitter_tweet_count_menu() {
+
+  $items['admin/config/user-interface/hcl-campaign'] = array(
+    'title' => t('Configuration HCL Campaign'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hcl_campaign_configuration'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer access control'),
+    'file' => 'include/hcl_campaign.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  // Put your menu items here.
+  $items['admin/config/user-interface/hcl-campaign/campaign-video'] = array(
+    'title' => t('Configuration HCL Campaign'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hcl_campaign_configuration'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer access control'),
+    'file' => 'include/hcl_campaign.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  // Put your menu items here.
+  $items['admin/config/user-interface/hcl-campaign/twitter'] = array(
+    'title' => t('HCL Campaign twitter'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hcl_campaign_hashtag_configuration'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer access control'),
+    'file' => 'include/hcl_campaign.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  // Put your menu items here.
+  $items['admin/config/user-interface/hcl-campaign/tweet-widget'] = array(
+    'title' => t('HCL Campaign Tweet Widget'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hcl_campaign_tweet_widget_configuration'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer access control'),
+    'file' => 'include/hcl_campaign.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  $items['ajax/get-campaign-quiz'] = array(
+    'title' => t('Campaign Quiz'),
+    'page callback' => 'get_campaign_quiz_question',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function twitter_tweet_count_theme() {
+  $items = array();
+
+  $items['hcl_campaign_twitter_tweet'] = array(
+    'variables' => array(
+      'total_tweets_count' => NULL,
+      'quiz' => NULL,
+      'quiz_question' => NULL,
+    ),
+    'template' => 'template/hcl-campaign-twitter-tweet',
+  );
+
+  $items['hcl_campaign_quiz'] = array(
+    'variables' => array(
+      'quiz' => NULL,
+      'quiz_question' => NULL,
+    ),
+    'template' => 'template/hcl-campaign-quiz-question',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function twitter_tweet_count_block_info() {
+  $blocks['hcl_campaign_twitter_video_block'] = array(
+    'info' => t('HCL Campaign Twitter Video'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function twitter_tweet_count_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'hcl_campaign_twitter_video_block':
+      $block['subject'] = '';
+      $block['content'] = twitter_hcl_video();
+    break;
+    case 'hcl_campaign_quiz_block':
+      $block['subject'] = '';
+      $block['content'] = twitter_hcl_quiz();
+    break;
+  }
+
+  return $block;
+}
+
+function get_campaign_quiz_question() {
+  $quiz_nid = get_campaign_quiz(TRUE);
+  $quiz_nid = isset($quiz_nid[0]) ? $quiz_nid[0] : '';
+  $quiz = node_load($quiz_nid);
+  $quiz = isset($quiz->body['und'][0]['value']) ? $quiz->body['und'][0]['value'] : '';
+
+  drupal_json_output($quiz);
+}
+
+function twitter_hcl_video() {
+
+  // Add css and js files.
+  drupal_add_css(path_to_theme() . '/css/twitter_tweet_count.css');
+  drupal_add_js(drupal_get_path('module', 'twitter_tweet_count') . '/js/twitter_tweet_count.js');
+  drupal_add_js('sites/all/libraries/jwplayer/jwplayer.js');
+
+  // Get total stored tweet count.
+  $total_tweets_count = variable_get('hcl_tweets_total_count', 0);
+
+  // Get quiz content type nids and get latest nid and call all quiz questions.
+  $quiz = get_campaign_quiz();
+  $quiz_question = node_load_multiple($quiz);
+  $quiz = isset($quiz[0]) ? $quiz[0] : -1;
+  if (isset($quiz_question)) {
+    $questions = '';
+    $question_nid = array_keys($quiz_question);
+    foreach ($quiz_question as $key => $question) {
+      $class = '';
+      $class = $question_nid[0] == $key ? ' top show' : $class;
+      $class = $question_nid[count($question_nid) - 1] == $key ? ' last' : $class;
+      $questions .= isset($question->body['und'][0]['value']) ? '<div class="quiz-question' . $class . '">' . $question->body['und'][0]['value'] . '</div>' : '';
+    }
+  }
+
+  $hcl_campaign_about_contest = variable_get('hcl_campaign_about_contest', '');
+  $hcl_campaign_twitter_widget_id = variable_get('hcl_campaign_twitter_widget_id', '');
+  $hcl_campaign_hashtag = variable_get('hcl_campaign_hashtag', '');
+  $hcl_campaign_hashtag = substr($hcl_campaign_hashtag, 1);
+
+  $variable['total_tweets_count'] = $total_tweets_count;
+  $variable['title'] = t('Tweet Meter');
+  $variable['hcl_campaign_about_contest'] = $hcl_campaign_about_contest;
+  $variable['hashtag'] = $hcl_campaign_hashtag;
+
+  // Call tpl file for tweet meter and video.
+  $output = theme('hcl_campaign_twitter_tweet', $variable);
+
+  unset($variable);
+  $variable['quiz'] = $quiz;
+  $variable['quiz_question'] = $questions;
+  $variable['hashtag'] = $hcl_campaign_hashtag;
+  $variable['twitter_widget_id'] = $hcl_campaign_twitter_widget_id;
+
+  // Call tpl file for quiz question.
+  $output .= theme('hcl_campaign_quiz', $variable);
+
+  $hcl_tweets_data = variable_get('hcl_tweets_data', '');
+
+  // Get video and image preview fiel name according to tweet count.
+  $default_video = get_video_name($total_tweets_count);
+  $default_image = get_image_name($total_tweets_count);
+
+  $hcl_tweets_count = isset($hcl_tweets_data['hcl_tweets_count']) ? array_values($hcl_tweets_data['hcl_tweets_count']) : '';
+
+  // Send some data from php to javascript file.
+  drupal_add_js(
+    array(
+      'total_tweets_count' => array(
+        'hcl_tweets_count' => $hcl_tweets_count,
+        'default_video' => $default_video,
+        'default_image' => $default_image,
+      ),
+    ),
+    'setting'
+  );
+
+  return $output;
+}
+
+/**
+ * Get video path according to tweets count.
+ *
+ * @param int $total_tweets_count
+ *   Total tweets count.
+ *
+ * @return string
+ *   Video uri.
+ */
+function get_video_name($total_tweets_count) {
+
+  $hcl_tweets_data  = variable_get('hcl_tweets_data', '');
+
+  if (!isset($hcl_tweets_data['hcl_tweets_video'])) {
+    return FALSE;
+  }
+
+  $hcl_tweets_video = array_values($hcl_tweets_data['hcl_tweets_video']);
+  foreach ($hcl_tweets_video as $key => $value) {
+    if (empty($value)) {
+      $hcl_tweets_video[$key] = isset($hcl_tweets_video[$key - 1]) ? $hcl_tweets_video[$key - 1] : $hcl_tweets_video[$key];
+    }
+  }
+  $hcl_tweets_count = array_values($hcl_tweets_data['hcl_tweets_count']);
+
+  $video_name = 0;
+  $tweets_count_counter = 0;
+  for ($i=0; $i < count($hcl_tweets_count); $i++) {
+    $tweets_count_counter = $tweets_count_counter + $hcl_tweets_count[$i];
+   if ($total_tweets_count < $tweets_count_counter) {
+      $video_name = $hcl_tweets_video[$i];
+      break;
+    }
+  }
+
+  if (empty($video_name)) {
+    $video_name = $hcl_tweets_video[count($hcl_tweets_video) - 1];
+  }
+
+  $video_name = file_load($video_name);
+  if (isset($video_name->uri)) {
+    $video_name = $video_name->uri;
+    $video_name = file_create_url($video_name);
+  }
+
+  return $video_name;
+}
+
+function get_image_name($total_tweets_count) {
+
+  global $base_url;
+
+  $hcl_tweets_data  = variable_get('hcl_tweets_data', '');
+
+  if (!isset($hcl_tweets_data['hcl_tweets_image_preview'])) {
+    return FALSE;
+  }
+
+  $hcl_tweets_image = array_values($hcl_tweets_data['hcl_tweets_image_preview']);
+  foreach ($hcl_tweets_image as $key => $value) {
+    if (empty($value)) {
+      $hcl_tweets_image[$key] = isset($hcl_tweets_image[$key - 1]) ? $hcl_tweets_image[$key - 1] : $hcl_tweets_image[$key];
+    }
+  }
+  $hcl_tweets_count = array_values($hcl_tweets_data['hcl_tweets_count']);
+  $image_name = 0;
+  $tweets_count_counter = 0;
+  for ($i=0; $i < count($hcl_tweets_count); $i++) {
+    $tweets_count_counter = $tweets_count_counter + $hcl_tweets_count[$i];
+    if ($total_tweets_count < $tweets_count_counter) {
+      $image_name = $hcl_tweets_image[$i];
+      break;
+    }
+  }
+
+  if (empty($image_name)) {
+    $image_name = $hcl_tweets_image[count($hcl_tweets_image) - 1];
+  }
+
+  $image_name = file_load($image_name);
+  if (isset($image_name->uri)) {
+    $image_name = $image_name->uri;
+    $image_name = file_create_url($image_name);
+  }
+
+  return $image_name;
+}
+
+/**
+ * Get hcl campaign quiz.
+ *
+ * @param int $quiz
+ *   Nid of hcl campaign quiz.
+ *
+ * @return string
+ *   Quiz of hcl campaign.
+ */
+function get_campaign_quiz($all = FALSE) {
+
+  $query = new EntityFieldQuery();
+
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'content_type_hcl_campaign_quiz')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->propertyOrderBy('created', 'DESC');
+    if ($all) {
+      $query->range(0, 1);
+    }
+
+  $result = $query->execute();
+
+  $nids = 0;
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+  }
+
+  return $nids;
+}
