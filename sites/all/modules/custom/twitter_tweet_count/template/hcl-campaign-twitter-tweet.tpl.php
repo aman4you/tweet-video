@@ -1,8 +1,8 @@
-<div class="campaign-video col-lg-offset-2 col-lg-5">
+<div class="campaign-video col-sm-8">
   <div id="hcl-campaign-video-player">Loading the player...</div>
 </div>
 
-<div class="hcl-campaign-tweet-meter-wrapper col-xs-offset-2 col-xs-8 col-sm-offset-2 col-lg-offset-0 col-sm-8 col-lg-3">
+<div class="hcl-campaign-tweet-meter-wrapper col-sm-4">
   <div class="hcl-campaign-tweet-meter-outer">
     <div class="hcl-campaign-tweet-meter-inner">
       <div class="hcl-campaign-tweet-meter-icon"></div>

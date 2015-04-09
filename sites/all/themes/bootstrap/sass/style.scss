@@ -1,55 +1,126 @@
 // Header
 #navbar {
-  max-width: 100%;
   width: 100%;
-  padding: 0px;
-  margin: 0px;
+  max-width: 972px;
+  margin: auto;
   border-color: white;
   background-color: white;
 }
 
 .navbar-header {
-  padding-left: 910px;
+  float: right;
+  padding-left: 96px;
+  background: url('/sites/all/themes/bootstrap/images/isb.png') no-repeat 0px 6px transparent;
+  background-size: 66px 22px;
+}
+
+.logo.navbar-btn {
+  padding-right: 0px;
+  margin-right: 0px;
+} 
+
+@media screen and (max-width: 770px) {
+  .navbar-toggle {
+    float: none;
+    display: block;
+    left: 40px;
+    top: 2px;
+    background-color: #0065af;
+  }
 }
 
 // Main menu
-#block-system-main-menu li, #block-system-main-menu li a {
-  display: inline;
-}
-
-#block-system-main-menu li:first-child {
-  padding-left: 560px;
-}
-
 #block-system-main-menu {
+  max-width: 972px;
   font-size: 13px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 14px;
+
+  ul {
+    text-align: right;
+  }
+
+  li, li a {
+    display: inline;
+  }
+
+  li {
+   &.active a {
+      color: #F6821F;
+      text-transform: uppercase;
+    }
+  }
 }
 
-#block-system-main-menu li.active a {
-  color: #F6821F;
-  text-transform: uppercase;
+@media screen and (max-width: 770px) {
+  #block-system-main-menu {
+    display: none;
+  }
 }
 
 // Banner
 #block-block-1 {
-  height: 170px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #F6821F;
+}
+
+.hcl-banner-text {
+  margin: auto;
+  max-width: 972px;
+  text-align: right;
+  font-weight: 700;
+  position: relative;
+}
+
+.shortcut-to-success {
+  top: -122px;
+  left: 1%;
+  position: absolute;
+  width: 164px;
+  height: 178px;
+  background: url('/sites/all/themes/bootstrap/images/shortcut.gif') no-repeat transparent;
 }
 
 .success {
   color: white;
-  font-size: 31px;
-  padding-left: 500px;
-  padding-top: 34px;
+  font-size: 30px;
   text-transform: uppercase;
 }
 
 .shortcut {
+  margin-top: -12px;
   font-size: 30px;
-  margin-top: -14px;
-  padding-left: 500px;
   text-transform: uppercase;
+}
+
+.hcl-breadcrumb {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 714px) {
+  .hcl-banner-text {
+    text-align: center;
+  }
+
+  .shortcut-to-success {
+    background-size: 70%;
+  }
+
+  .success {
+    font-size: 26px;
+  }
+
+  .shortcut {
+    margin-top: -7px;
+    font-size: 26px;
+  }
+
+  .hcl-breadcrumb {
+    margin-top: 10px;
+    font-size: 11px;
+  }
 }
 
 .watch-video, .tweet-answer, .isb {
@@ -59,17 +130,36 @@
 }
 
 .watch-video {
-  padding-left: 500px;
+  padding-left: 35px;
+  background: url('/sites/all/themes/bootstrap/images/eye.png') no-repeat 0px 3px transparent;
 }
 
-.hcl-breadcrumb {
-  font-size: 17px;
+.tweet-answer {
+  padding-left: 35px;
+  background: url('/sites/all/themes/bootstrap/images/bird.png') no-repeat 10px 2px transparent;
 }
 
-.shortcut-to-success {
-  bottom: 86px;
-  left: 280px;
-  position: absolute;
+.isb {
+  padding-left: 35px;
+  background: url('/sites/all/themes/bootstrap/images/chair.png') no-repeat 11px 0px transparent;
+}
+
+@media screen and (max-width: 430px) {
+  .isb {
+    display: inline-block;
+  }
+}
+
+.film-icon.top {
+  height: 14px;
+  margin-bottom: 10px;
+  background: url('/sites/all/themes/bootstrap/images/dot.png') repeat transparent;
+}
+
+.film-icon.bottom {
+  height: 14px;
+  margin-top: 18px;
+  background: url('/sites/all/themes/bootstrap/images/dot.png') repeat transparent;
 }
 
 // Main Content
@@ -78,16 +168,19 @@
   padding: 0px;
 }
 
-#block-twitter-tweet-count-hcl-campaign-twitter-video-block {
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
   background-color: #00ADEE;
 }
 
-// Campaign Video
-.campaign-video {
-    width: 37.667%;
-    margin-right: 40px;
+.col-sm-12 {
+  margin: auto;
+  max-width: 1050px;
+  margin-bottom: 50px;
 }
 
+// Campaign Video
 #hcl-campaign-video-player_logo {
   display: none;
 }
@@ -98,63 +191,62 @@
 }
 
 // Hcl Campaign Tweet Meter
+.hcl-campaign-tweet-meter-wrapper {
+  max-width: 340px;
+  margin: auto;
+  margin-top: 95px;
+}
+
 .hcl-campaign-tweet-meter-outer {
   background-color: #F6821F;
-  width: 270px;
   height: 232px;
-  margin-top: 95px;
 }
 
 .hcl-campaign-tweet-meter-inner {
   background-color: white;
-  width: 270px;
   height: 232px;
 }
 
 .hcl-campaign-tweet-meter-icon {
   background: url('/sites/all/themes/bootstrap/images/tweet-meter_export.png') no-repeat transparent;
-  width: 270px;
+  background-size: 100% 100%;
   height: 232px;
 }
 
 .hcl-campaign-tweet-meter-lable {
   color: white;
   font-family: "Comic Sans MS";
-  font-size: 14px;
-  left: 70px;
+  font-size: 16px;
+  left: 21%;
   position: absolute;
-  top: 75px;
+  bottom: 188px;
   width: 98px;
   text-transform: uppercase;
 }
 
-.tweet-meter-lables .tweet-meter-lable {
-  color: white;
-  font-size: 12px;
-  padding-bottom: 8px;
-}
-
- .tweet-meter-lables {
-  bottom: 36px;
-  left: 245px;
-  position: absolute;
- }
-
 .tweet-meter-units {
   background: url('/sites/all/themes/bootstrap/images/meter.png') no-repeat transparent;
   position: absolute;
-  bottom: 41px;
-  left: 271px;
+  bottom: 33px;
+  left: 90%;
   height: 200px;
-  width: 36px;
+  width: 20px;
 }
+
+.tweet-meter-lables {
+  width: 30px;
+  bottom: 36px;
+  left: 81%;
+  position: absolute;
+
+    .tweet-meter-lable {
+      color: white;
+      font-size: 12px;
+      padding-bottom: 8px;
+    }
+ }
 
 // Campaign Quiz Bank
-.campaign-quiz-bank {
-  width: 37.667%;
-  margin-right: 40px;
-}
-
 .quiz-header {
   margin-top: 30px;
   background-color: #0066B2;
@@ -166,11 +258,13 @@
   font-size: 9px;
   color: white;
   text-transform: uppercase;
-  background: url('/sites/all/themes/bootstrap/images/question_mark.png') no-repeat 11% 50%;
+  background: url('/sites/all/themes/bootstrap/images/question_mark.png') no-repeat 11% 50% transparent;
 }
 
 .link.all-quiz-question {
-  display: inline-block;
+  float: right;
+  padding-top: 16px;
+  padding-right: 10px;
   font-size: 9px;
   color: white;
   text-transform: uppercase;
@@ -178,58 +272,63 @@
 
 .quiz-content {
   background-color: white;
-  padding-bottom: 22px;
-  padding-top: 22px;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 .previous {
+  cursor: default;
   height: 26px;
-  width: 16px;
-  margin-left: 24px;
-  margin-right: 37px;
-  display: inline-block;
+  width: 12%;
+  float: left;
+  margin-left: 12px;
   background: url('/sites/all/themes/bootstrap/images/left-arrow.gif') no-repeat transparent;
 }
 
 .next {
+  cursor: default;
   height: 26px;
   width: 16px;
-  margin-left: 38px;
-  display: inline-block;
+  float: right;
+  margin-right: 12px;
   background: url('/sites/all/themes/bootstrap/images/right-arrow.gif') no-repeat transparent;
 }
 
-.quiz-content .quiz-question {
-  color: #0066B2;
-  display: none !important;
-}
-
-.quiz-question.top {
-  display: inline !important;
-}
-
 .campaign-quiz-question {
-  bottom: 7px;
-  position: relative;
+  width: 74%;
   display: inline-block;
 }
 
-// Hcl Campaign Twitter
-.hcl-campaign-twitter-widget-header {
-  font-weight: bold;
-  font-size: 11px;
-  color: #F6821F;
-  padding-top: 12px;
-  padding-left: 120px;
-  padding-bottom: 12px;
-  text-transform: uppercase;
-  background: #0066B2 url('/sites/all/themes/bootstrap/images/twitter_feed.png') no-repeat 27% 50%;
+.quiz-question {
+  color: #0066B2;
+  display: none;
 }
 
+@media screen and (max-width: 802px) {
+  .campaign-quiz-question {
+    width: 68%;
+  }
+}
+
+// Hcl Campaign Twitter
 .hcl-campaign-twitter-widget {
-  margin-bottom: 50px;
   margin-top: 29px;
-  width: 22%;
+}
+
+.hcl-campaign-twitter-widget-header {
+  font-weight: 800;
+  font-size: 12px;
+  color: #F6821F;
+  padding: 12px 0 12px 12px;
+  text-align: center;
+  text-transform: uppercase;
+  background: url('/sites/all/themes/bootstrap/images/twitter_feed.png') no-repeat 8% 50% transparent;
+  background-color : #0066B2;
+}
+
+#twitter-widget-0 {
+  width: 100% !important;
+  min-width: 158px !important;
 }
 
 // Footer
@@ -237,5 +336,3 @@
   margin: 0px;
   padding: 0px;
 }
-
-
